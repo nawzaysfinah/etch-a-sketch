@@ -1,5 +1,5 @@
-let color = "black";
-let click = true;
+let color = "random";
+let click = false;
 
 function populateBoard(size) {
     let board = document.querySelector('.board');
@@ -48,13 +48,22 @@ function resetBoard() {
     squares.forEach((div) => div.style.backgroundColor = "white");
 }
 
-document.querySelector("body").addEventListener("click", (e) => {
-    if (e.target.tagName != 'button') {
-        click = !click;
-        if(click) {
-            document.querySelector('.mode').textContent = "Mode: Coloring"
-        } else {
-            document.querySelector('.mode').textContent = "Mode: Not Coloring"
-        }
+// Turn on/off colouring mode
+document.querySelector("body").addEventListener("dblclick", (e) => {
+    click = !click;
+    if(click) {
+        document.querySelector('.mode').textContent = "Colouring: ✅";
+    } else {
+        document.querySelector('.mode').textContent = "Colouring: ❌";
     }
 });
+
+// Slider
+var sizeSlider = document.getElementById("sizeRange");
+var rangeValue = document.getElementById("range-value");
+
+sizeSlider.addEventListener('input', function() {
+    rangeValue.textContent = sizeSlider.value;
+});
+
+const input = sizeSlider.value;
